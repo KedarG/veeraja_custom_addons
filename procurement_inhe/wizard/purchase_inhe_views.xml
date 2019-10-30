@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="create_purchase_order_wizard" model="ir.ui.view">
+            <field name="name">create.purchase.order.wiz.view</field>
+            <field name="model">purchase.order.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Order">
+                    <group>
+                        <h3>
+                            <label string="You are going to create purchase order. Only locked state order will be processed."/>
+                        </h3>
+                    </group>
+                    <footer>
+                        <button name="create_purchase_order" string="Create" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_create_purchase_order" name="Create Purchase Order" res_model="create.purchase.order" src_model="sale.order" target="new" view_type="form" view_mode="form" key2="client_action_multi"/>
+
+    </data>
+</odoo>

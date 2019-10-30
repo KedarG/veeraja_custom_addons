@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>		<!-- Action to view all Quotaion related to a sale order line -->
+		<record id="sale_action_quotations_boms_line" model="ir.actions.act_window">
+			<field name="name">Quotation MRP BOM</field>
+			<field name="res_model">quotation.bom</field>
+			<field name="domain">[('order_line_id', '=', active_id)]</field>
+			<field name="context">{'search_default_order_line_id': [active_id], 'default_order_line_id': active_id}</field>
+		</record>		<!-- Action To VIEW LEVEL 0 Products -->		<!-- View Children Tree-->
+		<record id="quotation_bom_line_new_tree_children" model="ir.ui.view">
+			<field name="name">quotation.bom.line.view.treechildren</field>
+			<field name="model">quotation.bom.line</field>
+			<field name="arch" type="xml">				<!-- Add your fields here -->
+				<tree editable="bottom" decoration-danger="product_default_code == False">
+					<field name="name" invisible="1"/>
+					<field name="level"/>
+					<field name="product_category_id" invisible="1"/>
+					<field name="product_tmpl_id" domain="[('sale_ok','=',True)]" invisible="1"/>
+					<field name="product_id"/>
+					<field name="product_default_code" invisible="1"/>
+					<field name="immi_parent_id" invisible="1"/>
+					<field name="product_qty"/>
+					<field name="product_orig_qty" invisible="1"/>
+					<field name="product_uom_id"/>
+					<field name="weight"/>
+					<field name="weight_rate"/>
+					<field name="computed_cost" invisible="1"/>
+					<field name="purchase_price"/>
+					<field name="new_price_unit"/>
+					<field name="manufacture_oh"/>
+					<field name="bo_oh"/>
+					<field name="manu_oh_amt"/>
+					<field name="boh_amt"/>
+					<field name="margin"/>
+					<field name="state" invisible="1"/>
+					<field name="price_subtotal"/>
+					<field name="bom_parent_id"/>
+					<field name="qbom_tmpl_id"/>
+					<field name="bom_tmpl_id"/>
+
+					<field name="transaction_count" invisible="1"/>
+					<!-- <button string="Compute" name="compute_cost" type="object" attrs="{'invisible': [('transaction_count', '&gt;', 0)]}"/>
+					<button type="action" name="%(action_transactions)d" string="View Transactions Screen " attrs="{'invisible': [('transaction_count', '=', 0)]}" context="{'default_qbom_line_id': active_id}"/>
+					<button string="View Children" type="action" name="%(action_transactions)d" context="{'default_qbom_line_id': active_id}"/> -->
+				</tree>
+			</field>
+		</record>		<!-- quotation.bom.line add new  product action window -->
+		<record id="qbom_line_create_action" model="ir.actions.act_window">
+			<field name="name">Quotation BOM</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">quotation.bom.line</field>
+			<field name="view_mode">form</field>
+			<field name="view_type">form</field>
+			<field name="target">new</field>
+			<field name="context">{'search_default_qbom_id': [active_id], 'default_qbom_id': active_id,'default_level':'0'}</field>
+		</record>		<!-- level 0  Tree-->
+
+		<record id="action_children" model="ir.actions.act_window">
+			<field name="name">Quotation Bom Line</field>
+			<field name="res_model">quotation.bom.line</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{'search_default_qbom_recs_parent_prods' : 1,'search_default_qbom_id': [active_id],'default_qbom_id': active_id}</field>
+			<field name="domain">[('id','child_of',active_id)]</field>
+		</record>
+
+
+
+		<record id="quotation_bom_line_new_tree123" model="ir.ui.view">
+			<field name="name">quotation.bom.line.view.tree123</field>
+			<field name="model">quotation.bom.line</field>			<!-- <field name="domain">[('level','=','0')]</field> -->
+			<field name="arch" type="xml">				<!-- Add your fields here -->
+				<tree editable="bottom" create="0" decoration-danger="product_default_code == False">
+					<!-- <button type="action" string="+" name="%(action_children)d"/> -->
+					<field name="name" invisible="1"/>
+					<button string="" type="object" icon="fas fa-caret-right fa-2x" name="action_child_items" attrs="{'invisible':[('level','not in','0')]}"/>
+					<button string="" type="object" icon="fa fa-caret-square-o-right fa-2x" name="action_child_items" attrs="{'invisible':[('level','not in','1')]}"/>
+					<button string="" type="object" icon="fa fa-level-down fa-2x" name="action_child_items" attrs="{'invisible':[('level','not in','2')]}"/>
+					<button string="" type="object" icon="fa fa-hand-o-right fa-2x" name="action_child_items" attrs="{'invisible':[('level','not in','3')]}"/>
+					<button string="" type="object" icon="fas fa-angle-double-right fa-2x" name="action_child_items" attrs="{'invisible':[('level','not in','4')]}"/>
+
+					<button string="" type="object" icon="fa fa-plus-square-o fa-2x" name="action_child_items" attrs="{'invisible':[('level','not in','5')]}"/>
+					<button string="" type="object" icon="far fa-caret-square-right" name="action_child_items" attrs="{'invisible':[('level','not in','6')]}"/>
+					<button string="" type="object" icon="fas fa-caret-right" name="action_child_items" attrs="{'invisible':[('level','not in','7')]}"/>
+					<field name="level" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="product_category_id" invisible="1"/>
+					<field name="product_tmpl_id" domain="[('sale_ok','=',True)]" invisible="1"/>
+					<field name="product_id" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="product_default_code" invisible="1"/>
+					<field name="immi_parent_id" invisible="1"/>
+					<field name="bom_parent_id" invisible="1"/>
+					<field name="product_qty" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="product_orig_qty" invisible="1"/>
+					<field name="product_uom_id" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="weight" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="weight_rate" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="computed_cost" invisible="1"/>
+					<field name="purchase_price" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="new_price_unit" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="manufacture_oh" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="bo_oh" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="manu_oh_amt" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="boh_amt" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="margin" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="price_subtotal" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="computed_budget" invisible="1"/>
+					<field name="state" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+					<field name="budget" attrs="{'invisible':[('state','=','quotation')]}"/>
+					<field name="product_upload_file" filename="filename" widget="binary" readonly="1"/>
+					<field name="filename" invisible="1"/>
+					<field name="upload_pdf_file" widget="binary" filename="fname"/>
+					<field name="fname" invisible="1"/>
+					<field name="transaction_count" invisible="1"/>
+					<button string="Compute" name="compute_cost" type="object" invisible="1"/>
+					<!--attrs="{'invisible': [('transaction_count', '>', 0)]}"/> -->
+					<button type="action" name="%(action_transactions)d" string="View Transactions Screen " attrs="{'invisible': [('transaction_count', '=', 0)]}" context="{'default_qbom_line_id': active_id}"/>
+					<!-- <button string="View Child Items" type="object" name="action_child_items"/> -->
+				</tree>
+			</field>
+		</record>		<!-- level 0  Action-->
+		<record id="action_view_bom_lines_level0" model="ir.actions.act_window">
+			<field name="name">Quotation BOM Line</field>
+			<field name="res_model">quotation.bom.line</field>
+			<field name="view_mode">tree,form,kanban</field>
+			<field name="view_ids" eval="[(5, 0, 0),
+			(0, 0, {'view_mode': 'tree','view_id': ref('quotation_bom_line_new_tree123')})]"/>
+			<field name="domain">[('qbom_id', '=', active_id)]</field>
+			<field name="context">{'search_default_qbom_recs_parent_prods' : 0,'search_default_level':'0','search_default_qbom_id': [active_id], 'default_qbom_id': active_id}</field>
+		</record>		<!-- Action to view Transaction's Form-->
+		<record id="action_transactions" model="ir.actions.act_window">
+			<field name="name">Transaction</field>
+			<field name="res_model">transaction.info</field>
+			<field name="view_mode">tree,form</field>			<!-- <field name="domain">[('qbom_line_id', '=', active_id)]</field> -->
+			<field name="context">{'search_default_qbom_line_id': [active_id], 'default_qbom_line_id': active_id}</field>
+		</record>		<!-- quotation.bom tree view -->
+
+		<!-- Main Tree Of Quotation Bom-->
+		<record id="quote_bom_view_tree" model="ir.ui.view">
+			<field name="name">quotation.bom.view.tree</field>
+			<field name="model">quotation.bom</field>
+			<field name="arch" type="xml">
+				<tree create="0" import="0">					<!-- Add your fields here -->
+					<field name="name"/>
+					<field name="description"/>
+				</tree>
+			</field>
+		</record>		<!-- Quotation BOM LINE FORM -->		<!-- quotation.bom.line form view -->
+		<record id="quotation_bom_line_view_form" model="ir.ui.view">
+			<field name="name">quotation.bom.line.view.form</field>
+			<field name="model">quotation.bom.line</field>
+			<field name="arch" type="xml">
+				<form string="">
+					<sheet>
+						<group>
+							<form string="Quotation BOM Details">
+								<style>
+											.btn-primary:nth-child(2){
+												display:none !important;
+											}
+										   
+								</style>
+								<group string="Product Details">
+									<group>
+										<field name="product_category_id" />
+										<field name="logic_selection" widget='radio'/>
+										<field name="product_label" widget="many2many_tags" />
+										<!-- <field name="product_tmpl_id" domain="[('sale_ok','=',True)]"/>
+										<field name="product_attribute_ids" context="{'default_owner_model': 'sale.order.line', 'default_owner_id': id}" attrs="{'invisible':[('product_attribute_ids','=',[])]}">										
+											<tree create="0" delete="0" editable="1">
+												<field name="owner_model" invisible="1"/>
+												<field name="owner_id" invisible="1"/>
+												<field name="attribute_id" force_save="1"/>
+												<field name="possible_value_ids" widget="many2many_tags" invisible="1"/>
+												<field name="product_tmpl_id" invisible="1"/>
+												<field name="value_id" context="{'show_attribute': False, 'default_attribute_id': attribute_id, 'template_for_attribute_value': product_tmpl_id}"/>
+												<field name="price_extra"/>
+											</tree>
+										</field> -->
+										<field name="product_id" string="Product"/>
+										<field name="product_default_code" invisible="1"/>
+										<field name="copy_from" widget="radio"/>
+										<field name="qbom_tmpl_id" string="Quotation BOM" attrs="{'invisible' :[('copy_from', '=','bom' )]}" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+										<field name="bom_tmpl_id" string="Engineering BOM" attrs="{'invisible' :[('copy_from', '=','qbom' )]}" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+										<field name="bom_parent_id"/>
+										<field name="immi_parent_id"/>
+									</group>
+									<group>
+										<field name="product_uom_id"/>
+										<field name="computed_weight"/>
+										<field name="weight"/>
+										<field name="weight_rate"/>
+										<field name="active" invisible="1"/>
+										<field name="qbom_id" invisible="1"/>
+										<field name="functional_categ_id"/>
+										<field name="product_qty"/>
+										<field name="name"/>
+										<field name="level"/>
+										<!-- <field name="upload_pdf_file" widget="binary"/> -->
+										<field name="product_orig_qty" invisible="1"/>
+									</group>
+								</group>
+								<group string="Cost Details">
+
+									<group>
+										<field name="purchase_price"/>
+										<field name="computed_cost"/>
+										<field name="new_price_unit"/>
+									</group>
+									<group>
+										<label for="manufacture_oh" string="MOH (%)"/>
+										<div class="address_format">
+											<field name="manufacture_oh"/>
+											<field name="manu_oh_amt" nolabel="1"/>
+										</div>
+										<label for="bo_oh" string="BOH (%)"/>
+										<div class="address_format">
+											<field name="bo_oh"/>
+											<field name="boh_amt" class="oe_inline" nolabel="1"/>
+										</div>
+										<field name="margin"/>
+										<field name="price_subtotal"/>
+										<field name="transaction_count" invisible="1"/>
+									</group>
+								</group>
+							</form>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>		<!-- quotation.bom form view -->
+		<record id="quotation_bom_view_form" model="ir.ui.view">
+			<field name="name">quotation.bom.view.form</field>
+			<field name="model">quotation.bom</field>			<!-- <field name="domain">[('level','=','0')]</field> -->
+			<field name="arch" type="xml">
+				<form string="Quotation BOM" create="0">
+					<header>
+						<field name="state" widget="statusbar" statusbar_visible="quotation,sale" readonly="1" force_save="1"/>
+
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="name" readonly="1"/>
+							</h1>
+						</div>
+						<div class="oe_button_box" name="button_box">							<!-- <button name="%(action_view_bom_lines)d" string="Edit Quotation BOM" type="action" class="oe_stat_button" icon="fa-pencil-square-o" context="{'default_qbom_id': active_id}"/> -->
+							<button name="%(action_view_bom_lines_level0)d" string="Edit Products (LEVEL 0)" type="action" class="oe_stat_button" icon="fa-pencil-square-o" context="{'default_qbom_id': active_id}" />
+							<!-- <button string="Click" id ="adel" class="o_adel" name="click" type="object" custom="click"/> -->
+						</div>
+						<group>
+							<group>
+								<field name="product_category_id" string="Solution Category" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="logic_selection" widget='radio' attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="product_label" widget="many2many_tags" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="product_tmpl_id" string="Solution" context="{'default_type': 'product'}" invisible="1" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="product_id" string="Solution" context="{'default_type': 'product'}" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<!-- <field name="product_default_code" invisible="1"/> -->
+								<field name="product_uom_qty" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="product_uom_id" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="copy_from" widget="radio" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="qbom_template_id" string="Quotation BOM" attrs="{'invisible' :[('copy_from', '=','bom' )],'readonly': [('state', 'in', ('sale'))]}" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+								<field name="bom_template_id" string="Engineering BOM" attrs="{'invisible' :[('copy_from', '=','qbom' )],'readonly': [('state', 'in', ('sale'))]}" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+								<field name="description" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="order_line_id" invisible="1" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+							</group>
+							<group>
+								<field name="company_id" invisible="1" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="currency_id" invisible="1" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="level" invisible="1" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="manufacture_oh" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="bo_oh" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+								<field name="margin" attrs="{'readonly': [('state', 'in', ('sale'))]}"/>
+							</group>
+						</group>
+						<div class="oe_button_box" name="button_box">
+							<button name="%(qbom_line_create_action)d" string="Add Product" context="{'default_immi_parent_id':product_id}" type="action" class="oe_stat_button" icon="fa-pencil-square-o" attrs="{'invisible': [('state', 'in', ('sale'))]}"/>
+						</div>
+						<notebook>
+							<page string="BOM Details">
+								<field name="qbom_lines" widget="one2many_list" mode="tree,form" context="{'search_default_qbom_recs_level':1,'tree_view_ref': 'quotation_bom.quotation_bom_line_new_tree'}" attrs="{'readonly': [('state', 'in', ('sale'))]}">
+									<form string="Quotation BOM Details">
+										<style>
+											.btn-primary:nth-child(2){
+												display:none !important;
+											}
+										   
+										</style>
+										<group string="Product Details">
+											<group>												<!-- Edited by ajinkya on 21/06/2019-->												<!--start -->
+												<field name="product_category_id"/>
+												<!-- <field name="product_tmpl_id" domain="[('sale_ok','=',True)]"/> -->
+												<!-- <field name="product_attribute_ids" context="{'default_owner_model': 'sale.order.line', 'default_owner_id': id}" attrs="{'invisible':[('product_attribute_ids','=',[])]}">													
+													<tree create="0" delete="0" editable="1">
+														<field name="owner_model" invisible="1"/>
+														<field name="owner_id" invisible="1"/>
+														<field name="attribute_id" force_save="1"/>
+														<field name="possible_value_ids" widget="many2many_tags" invisible="1"/>
+														<field name="product_tmpl_id" invisible="1"/>
+														<field name="value_id" context="{'show_attribute': False, 'default_attribute_id': attribute_id, 'template_for_attribute_value': product_tmpl_id}"/>
+														<field name="price_extra"/>
+													</tree>
+												</field> -->
+												<field name="product_id" string="Variant"/>
+												<field name="product_default_code" invisible="1"/>
+												<field name="product_qty"/>
+												<field name="product_uom_id"/>
+												<field name="copy_from" widget="radio"/>
+												<field name="qbom_tmpl_id" string="Quotation BOM" attrs="{'invisible' :[('copy_from', '=','bom' )]}" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+												<field name="bom_tmpl_id" string="Engineering BOM" attrs="{'invisible' :[('copy_from', '=','qbom' )]}" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+												<field name="bom_parent_id"/>
+												<field name="immi_parent_id"/>
+												<!-- end-->
+											</group>
+											<group>
+												<field name="computed_weight"/>
+												<field name="weight"/>
+												<field name="weight_rate"/>
+												<field name="active" invisible="1"/>
+												<field name="qbom_id" invisible="1"/>
+												<field name="functional_categ_id"/>
+												<field name="name"/>
+												<field name="level"/>
+												<field name="product_upload_file" filename="filename"/>
+												<field name="filename" invisible="1"/>
+												<!-- <field name="upload_pdf_file" widget="binary"/> -->
+												<field name="product_orig_qty" invisible="1"/>
+											</group>
+										</group>
+										<group string="Cost Details">
+											<group>
+												<field name="purchase_price"/>
+												<field name="computed_cost"/>
+												<field name="new_price_unit"/>
+											</group>
+											<group>
+												<label for="manufacture_oh" string="MOH (%)"/>
+												<div class="address_format">
+													<field name="manufacture_oh"/>
+													<field name="manu_oh_amt" nolabel="1"/>
+												</div>
+												<label for="bo_oh" string="BOH (%)"/>
+												<div class="address_format">
+													<field name="bo_oh"/>
+													<field name="boh_amt" class="oe_inline" nolabel="1"/>
+												</div>
+												<field name="margin"/>
+												<field name="price_subtotal"/>
+												<field name="transaction_count" invisible="1"/>
+											</group>
+										</group>
+									</form>
+								</field>
+								<group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+									<div class="oe_subtotal_footer_separator oe_inline o_td_label">
+										<label for="total"/>
+									</div>
+									<field name="total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+									<div class="oe_subtotal_footer_separator oe_inline o_td_label">
+										<label for="total_weight"/>
+									</div>
+									<field name="total_weight" nolabel="1" class="oe_subtotal_footer_separator"/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"/>
+						<field name="activity_ids" widget="mail_activity"/>
+						<field name="message_ids" widget="mail_thread"/>
+					</div>
+				</form>
+			</field>
+		</record>		<!-- quotation.bom.line Tree view -->
+		<record id="quotation_bom_line_new_tree" model="ir.ui.view">
+			<field name="name">quotation.bom.line.view.tree</field>
+			<field name="model">quotation.bom.line</field>			<!-- <field name="domain">[('level','=','0')]</field> -->
+			<field name="arch" type="xml">				<!-- Add your fields here -->
+				<tree decoration-danger="product_default_code == False">
+					<field name="name" invisible="1"/>
+					<field name="level"/>
+					<field name="product_category_id" invisible="1"/>
+					<!-- <field name="product_tmpl_id" domain="[('sale_ok','=',True)]" invisible="1"/> -->
+					<field name="product_id"/>
+					<field name="product_default_code" invisible="1"/>
+					<field name="immi_parent_id" invisible="1"/>
+					<field name="bom_parent_id" invisible="1"/>
+					<field name="product_qty"/>
+					<field name="product_orig_qty" invisible="1"/>
+					<field name="product_uom_id"/>
+					<field name="weight"/>
+					<field name="weight_rate"/>
+					<field name="computed_cost" invisible="1"/>
+					<field name="purchase_price"/>
+					<field name="new_price_unit"/>
+					<field name="manufacture_oh"/>
+					<field name="bo_oh"/>
+					<field name="manu_oh_amt"/>
+					<field name="boh_amt"/>
+					<field name="margin"/>
+					<field name="price_subtotal"/>
+					<!-- <field name="product_upload_file" filename="filename"/>
+					<field name="filename" invisible="1"/>
+					<field name="upload_pdf_file" widget="binary"/> -->
+					<field name="transaction_count" invisible="1"/>
+					<!-- <button string="Compute" name="compute_cost" type="object" attrs="{'invisible': [('transaction_count', '&gt;', 0)]}"/>
+					<button type="action" name="%(action_transactions)d" string="View Transactions Screen " attrs="{'invisible': [('transaction_count', '=', 0)]}" context="{'default_qbom_line_id': active_id}"/> -->
+				</tree>
+			</field>
+		</record>		<!-- quotation.bom.line search view -->
+		<record id="quotation_bom_line_view_search" model="ir.ui.view">
+			<field name="name">quotation.bom.line.view.search</field>
+			<field name="model">quotation.bom.line</field>
+			<field name="arch" type="xml">
+				<search string="Search Description">					<!-- Add your fields here -->
+					<field name="qbom_id"/>
+					<field name="bom_parent_id"/>
+					<field name="child_id"/>
+					<field name="immi_parent_id"/>
+					<field name="name"/>
+					<!-- <field name="product_tmpl_id"/> -->
+					<field name="level"/>
+					<field name="product_id"/>
+					<field name="purchase_price"/>
+					<field name="product_category_id"/>
+					<field name="bom_tmpl_id"/>
+					<field name="functional_categ_id"/>
+					<filter string="Immidiate Parent" name="qbom_recs_parent_prods" context="{'group_by':'immi_parent_id'}"/>
+					<filter string="First level" name="qbom_recs_level" domain="[('level','=','0')]"/>
+					<filter string="Product Category" name="qbom_recs_category" context="{'group_by':'product_category_id'}"/>
+					<filter string="Bought Out Items" name="qbom_bought_outs" domain="[('product_id.route_ids','=','Buy')]"/>
+				</search>
+			</field>
+		</record>		<!-- Action For EDIT BOM LINES BUTTON on FORM , to the right -->
+		<record id="action_view_bom_lines" model="ir.actions.act_window">
+			<field name="name">Quotation BOM Line</field>
+			<field name="res_model">quotation.bom.line</field>
+			<field name="view_mode">tree,kanban</field>
+			<field name="view_ids" eval="[(5, 0, 0),
+			(0, 0, {'view_mode': 'tree','view_id': ref('quotation_bom_line_view_tree')})]"/>
+			<field name="domain">[('qbom_id', '=', active_id)]</field>
+			<field name="context">{'search_default_qbom_recs_parent_prods' : 0,'search_default_qbom_id': [active_id], 'default_qbom_id': active_id}</field>
+		</record>		<!--  Action for Quotation BOM -->
+		<record model="ir.actions.act_window" id="qutation_bom_action_window">
+			<field name="name">Quotation BOM</field>
+			<field name="res_model">quotation.bom</field>
+			<field name="view_mode">tree,form,kanban</field>
+		</record>		<!-- quotation_bom_line tree view -->
+		<record id="quotation_bom_line_view_tree" model="ir.ui.view">
+			<field name="name">quotation_bom_line.view.tree</field>
+			<field name="model">quotation.bom.line</field>
+			<field name="arch" type="xml">
+				<tree editable="bottom">					<!-- Add your fields here -->
+					<field name="qbom_id" invisible="1"/>
+					<field name="name"/>
+					<field name="indent_design"/>
+					<field name="level"/>
+					<field name="functional_categ_id"/>
+					<field name="product_id"/>
+					<field name="product_default_code" invisible="1"/>
+					<field name="product_qty"/>
+					<field name="product_uom_id"/>
+					<field name="weight"/>
+					<field name="weight_rate"/>
+					<field name="purchase_price"/>
+					<field name="new_price_unit"/>
+					<field name="manufacture_oh"/>
+					<field name="bo_oh"/>
+					<field name="manu_oh_amt"/>
+					<field name="boh_amt"/>
+					<field name="margin"/>
+					<field name="transaction_count" invisible="1"/>
+					<field name="price_subtotal" sum="Total"/>
+					<!-- <button string="Compute" name="compute_cost" type="object" attrs="{'invisible': [('transaction_count', '&gt;', 0)]}"/> -->					<!-- <button type="action" name="%(action_transactions)d" string="View Transactions Screen " attrs="{'invisible': [('transaction_count', '=', 0)]}" context="{'default_qbom_line_id': active_id}"/> -->
+				</tree>
+			</field>
+		</record>
+	</data>
+</odoo>

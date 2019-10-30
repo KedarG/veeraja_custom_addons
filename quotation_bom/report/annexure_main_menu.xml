@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="annexure_menu_order_id">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="web.annexure_menu_order_id">
+						<div class="page">
+                            
+                                <br/>
+                                <br/>
+							    <span class="fonts_size" style="padding-left: 15px;font-size: 18px;color:red">ANNEXURE</span>
+                            
+
+                                <table class="table table-condensed" style="border: 1px solid black;border-collapse: collapse;">
+								<thead style="border: 1px solid white;border-collapse: collapse;background-color:black;font-weight:bold;color:white;"><!--Second Table Header start -->
+									<tr>
+										<td class="text-center" style="border: 1px solid white;border-collapse: collapse;" width="1%">
+											<span style="font-weight: bold;" class="fonts_size">Sr.No.</span>
+										</td>
+										<td class="text-center" width="10%" style="border: 1px solid white;border-collapse: collapse;">
+											<span style="font-weight: bold;" class="fonts_size">Specification</span>
+										</td>
+										<br/>
+										<td class="text-center" width="5%" style="border: 1px solid white;border-collapse: collapse;">
+											<span style="font-weight: bold;" class="fonts_size">Quantity</span>
+										</td>
+										<td class="text-center" width="2%" style="border: 1px solid white;border-collapse: collapse;">
+											<span style="font-weight: bold;" class="fonts_size">Amount</span>
+										</td>
+									</tr>
+									<div style="page-break-after:auto;"></div>
+									<tbody>
+										<t t-set="qty" t-value="000"/>
+										<t t-set="wgt" t-value="000"/><!--Details of the second table -->
+                                        <t t-set="i" t-value="0" /> 
+										<tr t-foreach="o.order_line.qbom_ids.qbom_lines" t-as="line">
+                                            <t t-if="line.level == '0'">
+                                                <td class="text-center" style="border: 1px solid #D3D3D3;border-collapse: collapse;font-weight: bold;">
+                                                    <!-- <span style="color:black;" t-esc="line+ 1" class="fonts_size"/> -->
+                                                    <t t-set="i" t-value="i+1"/> 
+                                                    <span style="color:black;" t-esc="i"/> 
+                                                </td>
+                                                <td class="text-left" style="border: 1px solid #D3D3D3;border-collapse: collapse;">
+                                                    <span style="color:black;" class="fonts_size" t-field="line.product_id.name"/><br/>
+                                                    <span style="color:black;" class="fonts_size" t-field="line.name"/>
+                                                </td>
+                                                <td class="text-left" style="border: 1px solid #D3D3D3;border-collapse: collapse;">
+                                                    <span style="color:black;" class="fonts_size" t-field="line.product_qty"/>
+                                                    <t t-set="qty" t-value="qty + line.product_qty"/>
+                                                </td>
+                                                <td class="text-right" style="border: 1px solid #D3D3D3;border-collapse: collapse; background-color: #FFFFFF;">
+                                                    <span class="fonts_size" style="color:black;" t-field="line.price_subtotal"/>
+                                                </td>
+                                             </t>
+										</tr>
+										<tr>
+											<td class="text-left" style="border: 1px solid #D3D3D3;border-collapse:collapse;color:black;">
+												<span class="fonts_size"/>
+											</td>
+                                            <td class="text-left" style="border: 1px solid #D3D3D3;border-collapse:collapse;color:black;">
+												<span class="fonts_size" style="font-weight: bold;padding-left: 5px;"/>
+											</td>
+											<td class="text-right" style="border: 1px solid #D3D3D3;border-collapse:collapse;color:black;">
+												<span class="fonts_size" style="font-weight: bold;">Total</span>
+											</td>
+											<td class="text-right" style="border: 1px solid #D3D3D3;border-collapse:collapse;color:black;background-color:#B22222;color:white;">
+												<span style="font-weight: bold;" class="fonts_size" t-esc=" o.set_amt(o.amount_untaxed)"/>
+											</td>
+                                           
+										</tr>
+									</tbody>
+								</thead>
+							</table>
+
+                            
+                                <table style="border:none;margin-top:10px;" width="100%">
+                                <tr style="border:none;">
+                                        <td style="background-color: #ffffff;border:none;color:black;">
+                                        <span style="padding-left:5px;">Name of the person :</span>
+                                        <span style="padding-left:5px;" t-field="o.user_id.name"/>
+                                        <br/>
+                                        
+                                       </td>
+                                </tr>
+                                </table>
+
+
+
+                                
+                               <!-- <div style="page-break-before:always;"></div> -->
+
+                            
+                        
+						</div>
+                        </t>
+				</t>
+			</t>
+		</template>
+		<template id="report_annexure_main_menu">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="quotation_bom.annexure_menu_order_id" t-lang="o.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

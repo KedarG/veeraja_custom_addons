@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--create_by | create_date | update_by | update_date
+        Ajinkya      19/04/2019     Ajinkya     14/08/2019   
+        Info.: Sale Order Report -->
+    <data>
+        
+         <report
+        	id="commercial_proposal_report_id"
+            string="Commercial Proposal"
+  			model="sale.order"        
+            report_type="qweb-pdf"
+            name="quotation_bom.commerical_proposal_menu_order_id"
+            file="quotation_bom.commerical_proposal_menu_order_id"
+            attachment_use="True"
+            print_report_name="('Commercial Proposal - %s' % (object.name))"/>
+
+        <report
+        	id="annexure_report_id"
+            string="Annexure"
+  			model="sale.order"        
+            report_type="qweb-pdf"
+            name="quotation_bom.annexure_menu_order_id"
+            file="quotation_bom.annexure_menu_order_id"
+            attachment_use="True"
+            print_report_name="('Annexure - %s' % (object.name))"/>
+    		    	 
+           	
+    </data>
+  
+</odoo>

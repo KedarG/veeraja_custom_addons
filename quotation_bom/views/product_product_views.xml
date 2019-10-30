@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- product.product inherit form view -->
+    <record id="product_template_inherit_view" model="ir.ui.view">
+        <field name="name">product.product.inherit.view.form</field>
+        <field name="model">product.template</field>
+        <!-- .product_normal_form_view -->
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+        <xpath expr="//field[@name='type']" position="after">
+                <field name="product_label"  widget="many2many_tags" />
+        </xpath>
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field string="Option" name="option" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='list_price']" position="after">
+                <field string="MOH(%)" name="moh" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='list_price']" position="after">
+                <field string="BOH(%)" name="boh" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='boh']" position="after">
+				<!-- <field name="product_doc" /> -->
+                <field name="filename" invisible="1"/>
+                <field name="product_file" string="Upload Product File" filename="filename"/> 
+            </xpath> 
+        </field>
+    </record>
+    <!-- product.product inherit form view -->
+
+   
+</odoo>

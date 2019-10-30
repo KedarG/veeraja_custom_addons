@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="quote_line_add_item_view" model="ir.ui.view">
+            <field name="name">quote_line.add.item</field>
+            <field name="model">quoteline.additem</field>
+            <field name="arch" type="xml">
+                <form string="Add Item">
+                    <group>
+                        <h3>
+                            <label string="You are going to Add Item"/>
+                        </h3>
+                        <field name="product_id"/>
+                        <field name="product_qty"/>
+                        <field name="copy_from" widget="radio"/>
+                        <field name="qbom_tmpl_id" string="Quotation BOM" attrs="{'invisible' :[('copy_from', '=','bom' )]}" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+                        <field name="bom_tmpl_id" string="Engineering BOM" attrs="{'invisible' :[('copy_from', '=','qbom' )]}" options="{'no_quick_create':True,'no_create_edit':True,'no_open':True}"/>
+                    </group>
+                    <footer>
+                        <button name="add_item" string="Add" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_quote_line_add_item" name="Add Item" res_model="quoteline.additem" src_model="quotation.bom.line" target="new" view_mode="form" key2="client_action_multi"/>
+    </data>
+</odoo>

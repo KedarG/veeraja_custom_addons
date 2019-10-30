@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_label_view_form" model="ir.ui.view">
+            <field name="name">Product Label Form</field>
+            <field name="model">product_label</field>
+            <field name="arch" type="xml">
+                <form string="">
+                <group>
+                <group>
+                    <field name="label"/>
+                </group>
+                </group> 
+                </form>
+            </field>
+        </record>
+
+        <record id="product_label_view_tree" model="ir.ui.view">
+            <field name="name">product_label.view.tree</field>
+            <field name="model">product.label</field>
+            <field name="arch" type="xml">
+                <tree><!-- Add your fields here -->
+                    <field name="label"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="sale_oder_orc_action_window">
+            <field name="name">Product Label</field>
+            <field name="res_model">product.label</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

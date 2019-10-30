@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="module_category_formula_creation" model="res.groups">
+            <field name="name">Allow Formula Creation</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+        <record id="make_invisible" model="res.groups">
+            <field name="name">Enable Options</field>
+        </record>
+    </data>
+
+</odoo>
