@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="quote_line_mass_edit_view" model="ir.ui.view">
+            <field name="name">quote_line.mass.edit.view</field>
+            <field name="model">quoteline.massedit</field>
+            <field name="arch" type="xml">
+                <form string="Mass Update Item Details">
+
+                    <group>
+
+                        <h3>
+                            <label string="You are going to update Item details"/>
+                        </h3>
+                        <field name="moh"/>
+                        <field name="boh"/>
+                        <field name="margin"/>
+                    </group>
+
+                    <footer>
+                        <button name="mass_update" string="Update" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_quote_line_mass_edit" name="Mass Update Item Details" res_model="quoteline.massedit" src_model="quotation.bom.line" target="new" view_mode="form" key2="client_action_multi"/>
+    </data>
+</odoo>

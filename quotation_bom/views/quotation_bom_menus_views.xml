@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <menuitem name="Quotation BOM" id="menu_mrp_quotation_sale" sequence="1" parent="sale.sale_order_menu" action="qutation_bom_action_window"/> -->
+    <!-- <menuitem id="qbom_line_menu" name="Edit Quotation BOM" parent="sale.sale_order_menu" action="action_view_bom_lines" sequence="2"/> -->
+</odoo>

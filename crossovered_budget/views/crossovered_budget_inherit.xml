@@ -1,0 +1,19 @@
+<!--Created by ajinkya joshi on 07/10/2019-->
+<!--start -->
+<odoo>
+  <data>
+      <record model="ir.ui.view" id="crossovered_budget_view_form_inherited">
+            <field name="name">crossovered.budget.view.form</field>
+            <field name="model">crossovered.budget</field>
+            <field name="inherit_id" ref="account_budget.crossovered_budget_view_form"/>
+            <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="budget_amount" string="Budget Amount"/>
+                </xpath>
+
+            </field>
+        </record>
+  </data>
+</odoo>
+<!--End-->

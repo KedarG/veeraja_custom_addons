@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_stock_move_custom_stock_move,custom_stock_move.custom_stock_move,model_custom_stock_move_custom_stock_move,,1,0,0,0

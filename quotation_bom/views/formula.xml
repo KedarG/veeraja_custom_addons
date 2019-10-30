@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.ui.view" id="formula_info_view_form">
+		<field name="name">Formula</field>
+		<field name="model">formula.info</field>
+		<field name="arch" type="xml">
+			<form string="">
+				<!-- <header>
+					<button type="object" name="get_calulation" string="calculate"/>
+				</header> -->
+				<sheet>
+					<group>
+						<group>
+							<field name="product_category_id"/>
+							<field name="reference" placeholder="Formula Name"/>
+							<field name="excel_formula" filename="filename"/>
+							<field name="filename" invisible="1" />
+							<field name="excel_sheet_name"/>
+
+						</group>
+					</group>
+					<notebook>
+						<page string="Components" mode="tree">
+							<field name="formula_line_id">
+								<tree editable="bottom">
+									<field name="process"/>
+									<field name="parameter_name" placeholder="Please Enter the Parameter Name"/>
+									<field name="detail_product_category_id"/>
+									<field name="name" placeholder="Please Enter the Name"/>
+									<field name="uom" placeholder="Please Enter the UOM"/>
+									<field name="formula_expression" invisible="1" placeholder="Please Enter the Formula"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>	<!-- actions opening views on models -->
+	<record model="ir.actions.act_window" id="formula_action_window">
+		<field name="name">Formula</field>
+		<field name="res_model">formula.info</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<record model="ir.ui.view" id="formula_tree">
+		<field name="name">Formula.tree.view</field>
+		<field name="model">formula.info</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="reference"/>
+			</tree>
+		</field>
+	</record>	<!-- server action to the one above -->	<!--
+    <record model="ir.actions.server" id="calculator.action_server">
+      <field name="name">calculator server</field>
+      <field name="model_id" ref="model_calculator_calculator"/>	
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->	<!-- Top menu item -->
+	<menuitem name="Formula Creation" id="quotation_bom.menu_root" action="formula_action_window"/>
+	<!-- menu categories -->	<!--
+    <menuitem name="Menu 1" id="calculator.menu_1" parent="calculator.menu_root"/>
+    <menuitem name="Menu 2" id="calculator.menu_2" parent="calculator.menu_root"/>
+    -->	<!-- actions -->	<!--
+    <menuitem name="List" id="calculator.menu_1_list" parent="calculator.menu_1" action="calculator.action_window"/>
+    <menuitem name="Server to list" id="calculator" parent="calculator.menu_2" action="calculator.action_server"/>
+    -->
+</odoo>

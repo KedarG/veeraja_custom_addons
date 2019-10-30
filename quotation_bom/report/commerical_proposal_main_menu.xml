@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="commerical_proposal_menu_order_id">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="web.commerical_proposal_menu_order_id">
+						<div class="page">
+                            
+                                <br/>
+                                <br/>
+							    <span class="fonts_size" style="padding-left: 15px;font-size: 18px;color:red">Commerical</span>
+                                <span class="fonts_size" style="padding-left: 5px;font-size: 18px;color:black;font-weight:bold">Proposal</span>
+                            
+
+                            <table style="border:none;padding-top:10px;" height="10%">
+                                <tr>
+                                <td style="border:none;">
+                                    <table style="padding-top:10px;border:none; border-right:none;"  >
+                                    <tr style="border:none;border-right:none;">
+                                        <td style="width:380px;background-color: #ffffff;border-right:none;color:black;">
+                                        <span style="padding-left:10px;">To,</span>
+                                        <span class="fonts_size" t-field="o.partner_id.name" style="padding-left: 5px;font-weight:bold;font-size: 12px;color:red;font-weight:bold"/>
+                                        <br/>
+                                        <span class="fonts_size" t-field="o.partner_id.street" style="padding-left: 35px;font-size: 12px;"/><br/>
+                                        <span class="fonts_size" t-field="o.partner_id.street2" style="padding-left: 35px;font-size: 12px;"/>
+                                        <br/>
+                                        <!-- <span class="fonts_size" t-field="o.company_id.street2" style="padding-left: 5px;"/>
+                                        <br/> -->
+                                        <span class="fonts_size" t-field="o.partner_id.city" style="padding-left: 35px;font-size: 12px;"/>
+                                        <span class="fonts_size" t-field="o.partner_id.state_id" style="padding-left: 5px;font-size: 12px;"/><span class="fonts_size" t-field="o.partner_id.country_id" style="padding-left: 5px;font-size: 12px;"/><span class="fonts_size" t-field="o.partner_id.zip"/>
+                                        <br/>
+                                        <span class="fonts_size" style="padding-left: 35px;font-size: 12px;">Phone :</span>
+                                        <span class="fonts_size" t-field="o.partner_id.phone"/>
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                <td style="width:200px;background-color: #ffffff;border:none;border-right:none;">
+                                    <table style="padding-top:10px;border:none;border-right:none;">
+                                    <tr style="border:none;border-right:none;">
+                                        <td style="border:none;border-right:none;color:black;">
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                <td style="border:none;">
+                                    <table style="padding-top:10px;background-color: #ffffff;border:none;color:black;"> 
+                                    <tr style="width:350px;background-color: #ffffff;border:none;color:black;">
+                                        <td  style="background-color: #ffffff;border:none;">
+                                         <span class="fonts_size" style="padding-left: 5px;font-size: 12px;">Quotation No</span> 
+                                        <span class="fonts_size" style="padding-left: 21px;font-size: 10px;">:</span>
+                                        <span class="fonts_size" t-field="o.name" style="padding-left: 5px;font-size: 12px;"/>
+                                        <br/>
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 12px;">Quotation Dated</span> 
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 12px;">:</span>
+                                        <span class="fonts_size" t-field="o.date_order" style="padding-left: 5px;font-size: 12px;" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                        <br/>
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 12px;">Due Date</span> 
+                                        <span class="fonts_size" style="padding-left: 43px;font-size: 10px;">:</span>
+                                        <span class="fonts_size"  style="padding-left: 5px;font-size: 12px;"/>
+                                        <br/>
+                                        <span class="fonts_size"  style="padding-left: 5px;font-size: 12px;"/>
+                                        <br/>
+                                        <span class="fonts_size"  style="padding-left: 5px;font-size: 12px;"/>
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                </tr>
+                                </table>
+
+
+                               <table style="border:none;padding-top:10px;border:none;">
+                                <tr style="border:none;">
+                                <td style="padding-top:10px;border:none;">
+                                    <table style="padding-top:10px;border:none;">
+                                    <tr style="border:none;">
+                                        <td style="width:338px;background-color: #ffffff;border:none;color:black;">
+                                         <span style="padding-left:10px;">Consern Person :</span>
+                                            <span class="fonts_size" style="padding-left: 5px;font-weight:bold;font-size: 12px;color:red"/><br/>
+                                            <span class="fonts_size" style="padding-left: 110px;font-weight:bold;font-size: 12px;color:red"/>
+                                        <br/></td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                <td width="50%" style="padding-top:10px;border:none;">
+                                    <table style="border:none;">
+                                    <tr style="border:none;">
+                                        <td style="border:none;">
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                <td style="padding-top:10px;border:none;">
+                                    <table style="border:none;"> 
+                                    <tr style="border:none;">
+                                        <td style="border:none;">
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                </tr>
+                                </table>
+                                
+                                
+                                <hr/>
+
+
+                                <table style="border:none;padding-top:10px;border:none;"  >
+                                <tr style="border:none;">
+                                <td style="border:none;">
+                                    <table style="padding-top:10px;border:none;">
+                                    <tr style="border:none;">
+                                        <td style="width:338px;background-color: #ffffff;border:none;color:black;">
+                                        <span style="padding-left:10px;">From,</span>
+                                        <span class="fonts_size" t-field="o.user_id.name" style="padding-left: 5px;font-weight:bold;font-size: 12px;color:red;font-weight:bold"/>
+                                        <br/>
+                                        <span class="fonts_size" t-field="o.user_id.function" style="padding-left: 50px;font-size: 12px;"/>
+                                       </td>
+                                       <td style="background-color: #ffffff;border:none;color:black;">
+                                        <span style="padding-left:250px;">Contant No.:</span>
+                                        <span class="fonts_size" style="padding-left: 5px;font-weight:bold;font-size: 12px;color:red;font-weight:bold" t-field="o.user_id.phone"/>
+                                        <span class="fonts_size" style="padding-left: 5px;font-weight:bold;font-size: 12px;color:red;font-weight:bold" t-field="o.user_id.mobile"/>
+                                        <br/>
+                                       </td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                <td style="background-color: #ffffff;border:none;">
+                                    <table style="padding-top:10px;border:none;">
+                                    <tr style="border:none;">
+                                        <td >
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </td>
+                                <!-- <td style="border:none;">
+                                    <table style="padding-top:10px;background-color: #ffffff;border:none;"> 
+                                    <tr style="background-color: #ffffff;border:none;">
+                                        <td  style="background-color: #ffffff;border:none;">
+                                            <span class="fonts_size" style="padding-left: 5px;font-size: 12px;">Contact No</span> 
+                                            <span class="fonts_size" style="padding-left: 5px;font-size: 10px;">:</span>
+                                            <span class="fonts_size" style="padding-left: 5px;font-size: 12px;">7030182834</span>
+                                        </td>
+                                    </tr>
+                                    </table>
+                                </td> -->
+                                </tr>
+                                </table>
+
+                                <hr/>
+
+                                <span style="font-size: 16px;font-weight:bold;color:black;">Thank you for your inquiry,</span>
+                                <!-- <span style="font-weight:bold;font-size: 16px;color:black" t-esc="datetime.datetime.now().date()"/> -->
+                                <span style="font-size: 16px;color:black;">Please find below the commercial proposal for</span> 
+
+
+                                <table class="table table-condensed" style="border: 1px solid black;border-collapse: collapse;">
+								<thead style="border: 1px solid white;border-collapse: collapse;background-color:black;font-weight:bold;color:white;"><!--Second Table Header start -->
+									<tr>
+										<td class="text-center" style="border: 1px solid white;border-collapse: collapse;" width="1%">
+											<span style="font-weight: bold;" class="fonts_size">Sr.No.</span>
+										</td>
+										<td class="text-center" width="10%" style="border: 1px solid white;border-collapse: collapse;">
+											<span style="font-weight: bold;" class="fonts_size">Specification</span>
+										</td>
+										<br/>
+										<td class="text-center" width="5%" style="border: 1px solid white;border-collapse: collapse;">
+											<span style="font-weight: bold;" class="fonts_size">Quantity</span>
+										</td>
+										<td class="text-center" width="2%" style="border: 1px solid white;border-collapse: collapse;">
+											<span style="font-weight: bold;" class="fonts_size">Amount</span>
+										</td>
+									</tr>
+									<div style="page-break-after:auto;"></div>
+									<tbody>
+										<t t-set="qty" t-value="000"/>
+										<t t-set="wgt" t-value="000"/><!--Details of the second table -->
+										<tr t-foreach="o.order_line" t-as="line">
+											<td class="text-left" style="border: 1px solid #D3D3D3;border-collapse: collapse;font-weight: bold;">
+												<span style="color:black;" t-esc="line_index + 1" class="fonts_size"/>
+											</td>
+											<td class="text-left" style="border: 1px solid #D3D3D3;border-collapse: collapse;">
+												<span style="color:black;" class="fonts_size" t-field="line.name"/>
+											</td>
+											<td class="text-left" style="border: 1px solid #D3D3D3;border-collapse: collapse;">
+												<span style="color:black;" class="fonts_size" t-field="line.product_uom_qty"/>
+												<t t-set="qty" t-value="qty + line.product_uom_qty"/>
+											</td>
+											<td class="text-right" style="border: 1px solid #D3D3D3;border-collapse: collapse; background-color: #FFFFFF;">
+												<span class="fonts_size" style="color:black;" t-field="line.price_subtotal"/>
+											</td>
+										</tr>
+										<tr>
+											<td class="text-left" style="border: 1px solid #D3D3D3;border-collapse:collapse;color:black;">
+												<span class="fonts_size"/>
+											</td>
+                                            <td class="text-left" style="border: 1px solid #D3D3D3;border-collapse:collapse;color:black;">
+												<span class="fonts_size" style="font-weight: bold;padding-left: 5px;"/>
+											</td>
+											<td class="text-right" style="border: 1px solid #D3D3D3;border-collapse:collapse;color:black;">
+												<span class="fonts_size" style="font-weight: bold;">Total</span>
+											</td>
+											<td class="text-right" style="border: 1px solid #D3D3D3;border-collapse:collapse;color:black;background-color:#800000;color:white;">
+												<span style="font-weight: bold;" class="fonts_size" t-esc=" o.set_amt(o.amount_untaxed)"/>
+											</td>
+										</tr>
+									</tbody>
+								</thead>
+							</table>
+
+
+                            <table style="border:none;padding-top:10px;" width="100%">
+                                <tr>
+                                        <td style="background-color: #ffffff;border:none;color:black;">
+                                        <span style="padding-left:5px;">This commercial quotation should be referred in</span>
+                                        <br/>
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 12px;">conjunction with attached annexure.</span>
+                                        <span class="fonts_size" style="font-weight:bold;font-size: 12px;">Thank you.</span>
+                                       </td>
+                                </tr>
+                                </table>
+
+                                <table style="border:none;margin-top:10px;" width="100%">
+                                <tr style="border:none;">
+                                        <td style="background-color: #ffffff;border:none;color:black;">
+                                        <span style="padding-left:5px;">Name of the person</span>
+                                        <br/>
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 12px;">This quotation is subject to valid based on below terms &amp; condition. For terms and condition refer page 2 of 2</span>
+                                       </td>
+                                </tr>
+                                </table>
+                                <div style="page-break-before:always;"></div>
+                            <table width="100%" style="border:none;">
+	<tbody>
+		<tr>
+			 <td style="border:none;color:black;">
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 18px;color:red;"><u>Payment</u></span>
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 18px;color:black;font-weight:bold"><u>Terms</u></span> 
+                                        <br/>
+                                        <table style="border:none;color:black;">
+                                            <tr>
+                                                <td style="border: none;font-size: 10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Prices  INCOTERM</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 65px;">ex works Pune Maharastra India</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Transit Insurance and LBT</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 30px;">To be arranged by customer</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Warranty</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left:108px;">The equipment is warranted as  </span>
+                                                    <br/>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 158px;">being free from defects in materials and </span><br/>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 158px;">workmanship for a period of Twelve</span> <br/>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 158px;">months from date of shipment </span><br/>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 158px;"> or nine months from the date placed </span><br/>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 158px;">in service whichever occurs first </span>
+                                                    <br/>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 158px;">Refer our Warranty Policy for details </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Excise Duty</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 97px;">Extra as applicable </span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 7px;">[ At present 10.5 % ]</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Sales Tax / VAT</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 77px;">Extra as applicable </span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 7px;">[ At present 10.5%</span> <br/>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 160px;">Or 2% Against Form C ] </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Service tax</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left:102px;">Extra as applicable</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 7px;">[ At present 14 % ] </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Swhach Bharat Cess</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 57px;">Extra as applicable </span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left:7px;">[ At present 0.5 % ] </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Packing</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 115px;">Extra @ 3% of ex-works price. </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Transportation</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 88px;">To be arranged by customer</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                        <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Delivery:</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 114px;">Within 18-20 weeks from date of </span><br/>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 160px;">receipt of techno. Commercial clear order</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: none;font-size:10px;color:black;background-color: #ffffff;padding-left: 5px;">
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 5px;">Note:</span>
+                                                    <span style="border: none;background-color: #ffffff;font-size:10px;color:black;padding-left: 10px;" t-field="o.note"/><br/>
+                                                </td>
+                                            </tr>
+							            </table>
+                                    </td>
+			<td rowspan="2" style="border:none;background-color: #ffffff;">
+                                       <span class="fonts_size" style="padding-left: 5px;font-size: 18px;color:red"><u>Warranty</u></span>
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 18px;color:black;font-weight:bold"><u>Policy</u></span> <br/>
+                                        <p style="border: none;background-color: #ffffff;font-size: 10px;color:black;padding-left: 5px;">Veeraja Industries products are warranted against defects in materials
+                                        <br/>and workmanship for a period of One Year (10 months) from the date of
+                                        <br/>shipment. During the warranty period, Veeraja Industries will, at its
+                                        <br/>option, repair or replace products that prove to be defective. Repairs are
+                                        <br/>warranted for the remainder of the original warranty. Contact Veeraja
+                                        <br/>Industries for the warranty period specific to the product purchased.
+                                        <br/>
+                                        <br/>
+                                        For equipment under warranty, the owner is responsible for freight to
+                                        <br/>and From Veeraja Industries and all related customs, taxes, tariffs,
+                                        <br/>insurance, etc. Veeraja Industries is not responsible for any charges of
+                                        <br/>the equipment to and from the factory to the owner. Veeraja Industries
+                                        <br/>will return the equipment by the same method (i.e., Air, Express,
+                                        <br/>Surface) as the equipment was sent to Veeraja Industries.
+                                        <br/>
+                                        <br/>
+                                        Veeraja Industries strongly recommends all equipment be returned in its
+                                        <br/>original packaging.
+                                        <br/>
+                                        <br/>
+                                        Veeraja Industries obligations under this warranty are limited to repair
+                                        <br/>or replacement of failed parts, and the return shipment to the buyer of
+                                        <br/>the repaired or replaced parts.
+                                        <br/>
+                                        <br/>
+                                        <span style="background-color:#D3D3D3;font-weight:bold;">Limitations of Warranty</span>
+                                        <br/>The warranty does not apply to any part of a product that has been
+                                        <br/>installed, altered, repaired, or misused in any way that, in the opinion of
+                                        <br/>Veeraja Industries, would affect the reliability or detracts from the
+                                        <br/>performance of any part of the product, or is damaged as the result of
+                                        <br/>use in a way or with equipment that had not been previously approved
+                                        <br/>by Veeraja Industries.
+                                        <br/>
+                                        <br/>
+                                        The Warranty does not cover damage; loss, repair or replacement
+                                        <br/>necessitated due to loss incurred in transportation any cause beyond the
+                                        <br/>control of Veeraja Industries, such as lightning or other natural and
+                                        <br/>weather related events or wartime environments.
+                                        <br/>
+                                        <br/>
+                                        The warranty does not cover any labor involved in the removal and or
+                                        <br/>reinstallation of warranted equipment or parts on site, or any labor
+                                        <br/>required to diagnose the necessity for repair or replacement.
+                                        <br/>
+                                        <br/>
+                                        The warranty excludes any responsibility by Veeraja Industries for
+                                        <br/>incidental or consequential damages arising from the use of the
+                                        <br/>equipment or products, or for any inability to use them either separate
+                                        <br/>from or in combination with any other equipment or products.
+                                        <br/>
+                                        <br/>
+                                        A fixed charge established for each product will be imposed for all
+                                        <br/>equipment returned for warranty repair where Veeraja Industries
+                                        <br/>Corporation cannot identify the cause of the reported failure.
+                                        <br/>
+                                        <br/>
+                                        <span style="background-color:#D3D3D3;width:100%;font-weight:bold;">Exclusive Remedies</span>
+                                        <br/>Veeraja Industries warranty, as stated is in lieu of all other warranties,
+                                        <br/>expressed, implied, or statutory, including those of merchantability and
+                                        <br/>fitness for a particular purpose. The buyer shall pass on to any
+                                        <br/>purchaser, lessee, or other user of Veeraja Industries products, the
+                                        <br/>aforementioned warranty, and shall indemnify and hold harmless
+                                        <br/>Veeraja Industries from any claims or liability of such purchaser, lessee,
+                                        <br/>or user based upon allegations that the buyer, its agents, or employees
+                                        <br/>have made additional warranties or representations as to product
+                                        <br/>preference or use.
+                                        <br/>
+                                        <br/>
+                                        The remedies provided herein are the buyer’s sole and exclusive
+                                        <br/>remedies. Veeraja Industries shall not be liable for any direct, indirect,
+                                        <br/>special, incidental, or consequential damages, whether based on
+                                        <br/>contract, tort, or any other legal theory.
+                                        <br/>
+                                        
+                                        </p>
+                                    </td>
+		</tr>
+		<tr>
+			<td style="border:none;background-color: #ffffff;padding-top:10px;">
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 18px;color:red"><u>Terms</u></span>
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 18px;color:black"><u>&amp;</u></span>
+                                        <span class="fonts_size" style="padding-left: 5px;font-size: 18px;color:black;font-weight:bold"><u>Condition</u></span><br/>
+                                        <p style="border: none;background-color: #ffffff;font-size: 10px;color:black;padding-left: 5px;">Statutory   variation :   Our   prices   are   exclusive   of   any  additional
+                                        <br/>levies/duties or special surcharges that may be imposed during the
+                                        <br/>tenure of the contract by any State/Central Government or any other
+                                        <br/>Competent Authorities. Any extra cost arising out of such fiscal
+                                        <br/>measures or other statutory reasons would be to your account.
+                                        <br/>
+                                        <br/>
+                                        Force Majeure : In the event of “force majeure” occurring within the
+                                        <br/>agreed delivery period, the delivery date shall be extended on receipt of
+                                        <br/>an application without imposition of liquidated damages. Causes, which
+                                        <br/>depend on natural calamity- ties, civil wars, go slow, strikes at our/ sub-
+                                        <br/>suppliers’ works shall be considered as the cause of “force majeure”.
+                                        <br/>
+                                        <br/>
+                                        Cancellation : (a) Upon the agreed cancellation of a Contract the Buyer
+                                        <br/>will be liable for payment for all work carried out by the Company up to
+                                        <br/>the time it may be reasonable and practicable to cease manufacture.
+                                        <br/>This payment will cover all costs plus a loss of profit contribution. The
+                                        <br/>Company reserves the right to refuse to agree to cancel a Contract in
+                                        <br/>which case the Buyer shall be bound to accept delivery of goods and to
+                                        <br/>pay for them.
+
+                                        <br/>
+                                        <br/>
+                                        Limitation of liability: The Supplier’s liability to the Customer whether
+                                        <br/>arising under contract, tort (including negligence), statutory duty or
+                                        <br/>otherwise for any loss or damage shall at the Supplier’s option be limited
+                                        <br/>to recovery of direct damages not exceeding, the cost of repair or
+                                        <br/>replacement or re-supply of the Products or equivalent products or the
+                                        <br/>re-supply of the Services (as the case may be). The Supplier shall in no
+                                        <br/>event be liable to the Customer for any indirect, economic, incidental,
+                                        <br/>special or consequential loss including, without limitation, loss of profits
+                                        <br/>or use or goodwill or anticipated savings or revenue or contracts,
+                                        <br/>whether or not the Supplier has been advised of the possibility of such
+                                        <br/>loss. The Supplier does not accept liability on account of the following
+                                        <br/>and Customer should take sufficient and reasonable care and insurance
+                                        <br/>of its employees, visitors, properties etc. For death of, or personal injury
+                                        <br/>to any person, for any reason, For physical damage to, or destruction of
+                                        <br/>tangible property of Customer, for any reason, and For not handling the
+                                        <br/>product as per instructions from Supplier.
+                                        <br/>
+                                        
+
+                                        </p><br/>
+
+                                    </td>
+		</tr>
+	</tbody>
+</table>
+                        
+						</div>
+                        </t>
+				</t>
+			</t>
+		</template>
+		<template id="report_commerical_proposal_main_menu">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="quotation_bom.commerical_proposal_menu_order_id" t-lang="o.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

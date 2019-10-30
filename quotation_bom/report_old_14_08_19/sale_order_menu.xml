@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--create_by | create_date | update_by | update_date
+        Ajinkya      19/04/2019     Ajinkya     19/04/2019   
+        Info.: Sale Order Report -->
+    <data>
+        <report
+        	id="sale_order_report_menu_id"
+            string="Print Quotation"
+  			model="sale.order"        
+            report_type="qweb-pdf"
+            name="quotation_bom.sale_order_report_menu_order_id"
+            file="quotation_bom.sale_order_report_menu_order_id"
+            attachment_use="True"
+            print_report_name="('Quotation - %s' % (object.name))"/>
+
+        <report
+        	id="quote_bom_final_report_menu_id"
+            string="Print Final Quotation"
+  			model="quotation.bom"        
+            report_type="qweb-pdf"
+            name="quotation_bom.quote_bom_report_final_menu_order_id"
+            file="quotation_bom.quote_bom_report_final_menu_order_id"
+            attachment_use="True"
+            print_report_name="('Quotation Bom - %s' % (object.name))"/>
+
+         <report
+        	id="commercial_proposal_report_id"
+            string="Commercial Proposal"
+  			model="sale.order"        
+            report_type="qweb-pdf"
+            name="quotation_bom.commerical_proposal_menu_order_id"
+            file="quotation_bom.commerical_proposal_menu_order_id"
+            attachment_use="True"
+            print_report_name="('Commercial Proposal - %s' % (object.name))"/>
+ 		
+            	
+        <record id="paperformat_sale_order_report" model="report.paperformat">
+            <field name="name">Quotation Report</field>
+            <field name="default" eval="True"/>
+    <field name="format">A4</field>
+    <field name="page_height">0</field>
+    <field name="page_width">0</field>
+    <field name="orientation">Portrait</field>
+    <field name="margin_top">75</field>
+    <field name="margin_bottom">15</field>
+    <field name="margin_left">7</field>
+    <field name="margin_right">7</field>
+    <field name="header_line" eval="False" />
+    <field name="header_spacing">62</field>
+    <field name="dpi">90</field>
+    	</record>
+        
+        <!--Created-By | Created-Date|Info. for Quotation Only
+            Ajinkya    |19-04-2019    |Paperformat Id Set, By default related Report -->
+        <record id="quotation_bom.sale_order_report_menu_id" model="ir.actions.report">
+            <field name="paperformat_id" ref="quotation_bom.paperformat_sale_order_report" />
+        </record>  
+
+
+
+
+
+        <record id="paperformat_quote_bom_final_report" model="report.paperformat">
+            <field name="name">Quotation Final Report</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">55</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="True" />
+            <field name="header_spacing">52</field>
+            <field name="dpi">90</field>
+    	</record>
+         <!--Created-By | Created-Date|Info. for  Final Quotation Only
+            Ajinkya    |25-04-2019    |Paperformat Id Set, By default related Report -->
+        <record id="quotation_bom.quote_bom_final_report_menu_id" model="ir.actions.report">
+            <field name="paperformat_id" ref="quotation_bom.paperformat_quote_bom_final_report" />
+        </record>      		    	 
+           	
+    </data>
+  
+</odoo>

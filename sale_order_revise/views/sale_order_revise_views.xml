@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Sale ORder Form with revise_order_checkbox CheckBox and tree for refering/viewing revised sale order -->
+        <record id="sales_orders_forms_123" model="ir.ui.view">
+            <field name="name">sale.order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="revise_name"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="revise_order_checkbox"/>
+                </xpath>
+                <xpath expr="//form[@class='o_sale_order']//sheet//notebook//page" position="after">
+                    <page string="Revise Order">
+                        <field name="sale_line">
+                            <tree string="" create="false" edit="false" write="false" delete="false">
+                                <field name="revise_name" string="Revise Order"/>
+                                <field name="name" string="Quotation"/>
+                                <field name="date_order" string="Quotation Date"/>
+                                <field name="partner_id"/>
+                                <field name="user_id"/>
+                                <field name="amount_total" sum="Total Tax Included" widget="monetary"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <!-- Sale Order Revise Form -->
+        <record id="sale_order_revise_forms" model="ir.ui.view">
+            <field name="name">sale_order_revise.view.form</field>
+            <field name="model">sale.order.revise</field>
+            <field name="arch" type="xml">
+                <form string="" not_open="True">
+                    <script>
+                        $(document).ready(function()
+                        {
+                        $(".modal-footer").hide();
+                        });
+                    </script>
+                    <field name="state"/>
+                    <group>
+                        <group not_open="True">
+                            <field name="partner_id" readonly="True" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="partner_invoice_id" readonly="True" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="partner_shipping_id" readonly="True" options="{'no_open': True, 'no_create': True}"/>
+                        </group>
+                        <group not_open="True">
+                            <field name="validity_date" readonly="True"/>
+                            <field name="pricelist_id" readonly="True" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="payment_term_id" readonly="True" options="{'no_open': True, 'no_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sale Order Line Revise">
+                            <field name="sale_orderlinerevise_line" readonly="1" mode="tree,kanban" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}" write="false">
+                                <tree string="Sale Order Line Revise" delete="false">
+                                    <field name="product_id" readonly="True"/>
+                                    <field name="layout_category_id" readonly="True"/>
+                                    <field name="name" readonly="True"/>
+                                    <field name="product_uom_qty" readonly="True"/>
+                                    <field name="product_uom" readonly="True"/>
+                                    <field name="price_unit" readonly="True"/>
+                                    <field name="purchase_price" readonly="True"/>
+                                    <field name="tax_id" readonly="True"/>
+                                    <field name="discount" readonly="True"/>
+                                    <field name="price_subtotal" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True" create="false" edit="false"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                <field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True"/>
+                                <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True"/>
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="amount_total" readonly="True" />
+                                </div>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True"/>
+                            </group>
+                        </page>
+                        <page string="Other Information" readonly="True">
+                            <group>
+                                <group string="Sales Information" name="sales_person" readonly="True">
+                                    <field name="user_id" readonly="True" options="{'no_open': True, 'no_create': True}"/>
+                                    <field name="team_id" readonly="True" options="{'no_open': True, 'no_create': True}"/>
+                                    <field name="client_order_ref" readonly="True"/>
+                                </group>
+                                <group name="sale_pay" string="Invoicing" readonly="True">
+                                    <field name="date_order" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}" readonly="True"/>
+                                    <field name="fiscal_position_id" options="{'no_create': True}" readonly="True"/>
+                                </group>
+                                <group string="Reporting" name="technical" groups="base.group_no_one" readonly="True">
+                                    <field groups="base.group_no_one" name="origin" readonly="True"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

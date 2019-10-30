@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+        <template id="assets_pdf_css" name="Custom Report CSS" inherit_id="web.report_assets_common">
+        <!-- <xpath expr="." position="inside">
+            <link href="/quotation_bom/static/src/css/custom.css" rel="stylesheet"/>
+        </xpath> -->
+    </template> 
+    <template id="web.commerical_proposal_menu_order_id">
+        <div class="header o_boxed_header" >
+             <table>
+            <tr>
+                <td>
+                    <span class="fonts_size" style="padding-left: 15px;font-size: 16px;color:red">COMMERCIAL</span>
+                    <span class="fonts_size" style="padding-left: 5px;font-size: 16px;color:black;font-weight:bold">PROPOSAL</span>
+                </td>
+                <td>
+                    <img align="right" style="padding-left: 400px;padding-top:20px;" t-if="o.company_id.logo" t-att-src="'data:/home/ajinkya/odoo-11.0/veeraja_cust_addons_25_04/quotation_bom/static/src/img;base64,%s' % to_text(o.company_id.logo)"/>
+                </td>
+            </tr>
+        </table>
+            <div style="background-color:#D3D3D3;">
+            <table>
+            <tr>
+            <td style="font-weight:bold;color:black;padding-top:10px;padding-left:10px;">
+            <span class="fonts_size">Date:</span>
+            <span class="fonts_size" t-field="o.date_order" t-field-options='{"format": "dd/MM/yyyy"}'/>
+            </td>
+            <td style="font-weight:bold;color:black;padding-top:10px;padding-left:280px;">
+            <span class="fonts_size" >Proposal No:</span>
+            <span class="fonts_size" t-field="o.name"/></td>
+            <td style="font-weight:bold;color:black;padding-top:10px;padding-left:240px;">
+            <span class="fonts_size">Revision:</span>
+            <span class="fonts_size" t-field="o.revise_name"></span>
+            </td>
+            </tr>
+            </table>
+         </div>
+        </div>
+        
+        <div class="article o_report_layout_boxed">
+            <t t-raw="0"/>
+        </div>
+
+
+        <div class="footer">
+        <hr/>
+        <table style="" height="10%">
+            <tr >
+                <td style="width:1500px;background-color: #ffffff;">
+                <span class="fonts_size" t-field="o.company_id.name" style="padding-left: 5px;font-weight:bold;font-size: 16px;color:black;"/>
+                <br/>
+                <span class="fonts_size" t-field="o.company_id.street" style="padding-left: 5px;font-size: 12px;"/>
+                <span class="fonts_size" t-field="o.company_id.street2" style="padding-left:0px;font-size: 12px;"/>
+                <span style="padding-left:2px;border-right:1px solid #000000"/>
+                <!-- <span class="fonts_size" style="padding-left: 5px;font-size: 12px;">Phone :</span> -->
+                <span class="fonts_size" style="padding-left: 5px;font-size: 12px;" t-field="o.company_id.phone"/>
+                <br/>
+                <!-- <span class="fonts_size" t-field="o.company_id.street2" style="padding-left: 5px;"/>
+                <br/> -->
+                <span class="fonts_size" t-field="o.company_id.city" style="padding-left: 5px;font-size: 12px;"/>
+                <span class="fonts_size" t-field="o.company_id.state_id" style="padding-left: 1px;font-size: 12px;"/> <span class="fonts_size" t-field="o.company_id.zip" style="font-size: 12px;"/>
+                <span style="padding-left:5px;border-right:1px solid #000000"/> <span t-field="o.company_id.email" style="padding-left:5px;font-size: 12px;"/>
+                <span style="padding-left:5px;border-right:1px solid #000000"/>
+                <span t-field="o.company_id.website" style="padding-left:5px;font-size: 12px;"/>
+               </td>
+            
+       
+        <td  style="width:400px;background-color: #ffffff;">
+                   <span class="fonts_size" style="padding-left:120px;"> Page </span>
+            <span class="page" style="font-size:14px;padding-left: 14px;"/>
+            <span style="padding-left: 8px;" class="fonts_size"> of </span>
+            <span class="topage" style="font-size:14px;"/><br/>
+             <img style="padding-left: 105px;padding-top:20px;" t-att-src="'/quotation_bom/static/src/img/image002.png'   "/>
+        </td>
+        </tr> 
+     </table>
+     </div>
+
+        <!-- <div class="footer" align="right">
+            <span class="fonts_size"> Page </span>
+            <span class="page" style="font-size:14px;padding-left: 14px;"/>
+            <span style="padding-left: 8px;" class="fonts_size"> of </span>
+            <span class="topage" style="font-size:14px;"/>
+        </div> -->
+    </template>
+</data> 
